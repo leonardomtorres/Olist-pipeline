@@ -43,7 +43,7 @@ Python + SQLAlchemy  ──►  PostgreSQL (schema: raw)
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/olist-pipeline.git
+git clone https://github.com/leonardomtorres/Olist-pipeline.git
 cd olist-pipeline
 
 # Configure as variáveis de ambiente
