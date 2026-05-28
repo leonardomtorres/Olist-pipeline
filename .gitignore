@@ -4,6 +4,5 @@ data/raw/
 __pycache__/
 *.pyc
 .dbt/
-*.egg-info/
-dist/
-.DS_Store
+dbt/target/
+dbt/logs/

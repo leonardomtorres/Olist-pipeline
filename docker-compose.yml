@@ -13,6 +13,8 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
 
+ 
+
   pipeline:
     build: ./pipeline
     container_name: olist_pipeline
@@ -22,6 +24,7 @@ services:
     volumes:
       - ./data:/app/data
       - ./pipeline:/app
+    command: ["tail", "-f", "/dev/null"]      
       
   dbt:
     image: ghcr.io/dbt-labs/dbt-postgres:latest
