@@ -22,6 +22,20 @@ services:
     volumes:
       - ./data:/app/data
       - ./pipeline:/app
+      
+  dbt:
+    image: ghcr.io/dbt-labs/dbt-postgres:latest
+    container_name: olist_dbt
+    volumes:
+      - ./dbt:/usr/app
+    working_dir: /usr/app
+    depends_on:
+      - db
+    environment:
+      - DBT_PROFILES_DIR=/usr/app
+
+
+
 
   dashboard:
     build: ./dashboard
