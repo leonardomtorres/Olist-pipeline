@@ -9,6 +9,9 @@ load_dotenv()
 
 st.set_page_config(page_title="Olist Pipeline", layout="wide")
 
+def brl(valor):
+    return f"R$ {valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
 @st.cache_resource
 def get_engine():
     return create_engine(
@@ -37,13 +40,13 @@ ticket = carregar_dados("select * from raw_mart.mart_ticket_por_estado order by 
 entrega = carregar_dados("select * from raw_mart.mart_performance_entrega order by pct_atraso desc")
 
 with col1:
-    st.metric("Total de Pedidos", f"{receita['total_pedidos'].sum():,.0f}")
+    st.metric("Total de Pedidos", f"{receita['total_pedidos'].sum():,.0f}".replace(",", "."))
 
 with col2:
-    st.metric("Receita Total", f"R$ {receita['receita_total'].sum():,.2f}")
+    st.metric("Receita Total", brl(receita['receita_total'].sum()))
 
 with col3:
-    st.metric("Ticket Médio Geral", f"R$ {ticket['ticket_medio'].mean():,.2f}")
+    st.metric("Ticket Médio Geral", brl(ticket['ticket_medio'].mean()))
 
 st.markdown("---")
 
